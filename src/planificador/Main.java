@@ -51,12 +51,23 @@ public class Main {
         // simula el algoritmo o algoritmos pedidos y muestra los resultados.
         // Cuando lo tengas, borra el println de arriba y este comentario.
 
-        // --- Tarea 1: comprobación temporal de la lectura (se sustituirá en las tareas 2 y 3) ---
+        // --- Tarea 2: comprobación temporal de los algoritmos (se sustituirá en la tarea 3) ---
         try {
             List<Proceso> procesos = LectorProcesos.leer(fichero.toString());
-            for (Proceso p : procesos) {
-                System.out.println(p.getNombre() + " llega=" + p.getLlegada()
-                        + " rafaga=" + p.getRafaga() + " estado=" + p.getEstado());
+
+            List<Planificador> algoritmos = new java.util.ArrayList<>();
+            if (algoritmo.equals("fcfs") || algoritmo.equals("todos")) algoritmos.add(new FCFS());
+            if (algoritmo.equals("sjf")  || algoritmo.equals("todos")) algoritmos.add(new SJF());
+            if (algoritmo.equals("rr")   || algoritmo.equals("todos")) algoritmos.add(new RoundRobin(quantum));
+
+            for (Planificador pl : algoritmos) {
+                Resultado r = pl.simular(procesos);
+                System.out.println("=== " + r.getAlgoritmo() + " ===");
+                System.out.println("CPU: " + String.join(" ", r.getGantt()));
+                for (Proceso p : r.getProcesos()) {
+                    System.out.println(p.getNombre() + " fin=" + p.getFin());
+                }
+                System.out.println("Cambios de contexto: " + r.getCambiosContexto());
             }
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
