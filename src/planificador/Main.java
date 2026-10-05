@@ -50,5 +50,20 @@ public class Main {
         // TODO (tareas 1 a 3): a partir de aquí, lee los procesos del fichero,
         // simula el algoritmo o algoritmos pedidos y muestra los resultados.
         // Cuando lo tengas, borra el println de arriba y este comentario.
+
+        // --- Tarea 1: comprobación temporal de la lectura (se sustituirá en las tareas 2 y 3) ---
+        try {
+            List<Proceso> procesos = LectorProcesos.leer(fichero.toString());
+            for (Proceso p : procesos) {
+                System.out.println(p.getNombre() + " llega=" + p.getLlegada()
+                        + " rafaga=" + p.getRafaga() + " estado=" + p.getEstado());
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            System.exit(1);
+        } catch (java.io.IOException e) {
+            System.err.println("Error leyendo el fichero: " + e.getMessage());
+            System.exit(1);
+        }
     }
 }
