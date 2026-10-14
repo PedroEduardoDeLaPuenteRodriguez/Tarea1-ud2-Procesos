@@ -1,7 +1,7 @@
 # Simulador de planificación de CPU para NexoData
 
 **Módulo:** 0490 Programación de Servicios y Procesos · 2.º DAM · Tema 2
-**Autor:** *(tu nombre)*
+**Autor:** Pedro Eduardo De La Puente Rodriguez
 
 ---
 
@@ -41,8 +41,6 @@ Ejemplos:
 java -cp out planificador.Main datos/ejemplo_clase.csv rr 2 --traza
 java -cp out planificador.Main datos/nocturno.csv todos 4
 ```
-
-Si no se indica quantum, se usa 2.
 
 <img width="1275" height="686" alt="image" src="https://github.com/user-attachments/assets/8d48fc36-80c6-4035-aee0-59fe9282551f" />
 
@@ -93,8 +91,6 @@ Resolución de `datos/verificacion.csv`:
 | P3 | 2 | 2 |
 | P4 | 4 | 5 |
 | P5 | 6 | 1 |
-
-Resuelto a mano en forma de tablas, antes de ejecutar el programa, aplicando las reglas de la simulación (en especial la 3 y la 4).
 
 ### 4.1 FCFS
 
@@ -260,20 +256,5 @@ Un SO real **no distingue** `LISTO` de `EJECUCION` en la columna de estado (ambo
 Para los **trabajos nocturnos** recomiendo **SJF**: da la menor espera media (7,67 min frente a 10,00 de FCFS) y el menor retorno medio (11,67 min), y evita que LOGS espere 14 min detrás de FACTURA. Al ser un lote nocturno sin usuarios esperando una respuesta inmediata, no importa que BACKUP termine el último (instante 24), y como el conjunto de trabajos es fijo y conocido, la inanición no es un riesgo real. Su límite es que exige conocer o estimar la duración de cada trabajo con antelación.
 
 En un **servidor con usuarios conectados** cambiaría de opinión y usaría **Round Robin con quantum 2**: baja la respuesta media a 2,83 min (frente a 7,67 de SJF), que es lo que percibe un usuario, a costa de 11 cambios de contexto. Con q=1 la respuesta mejora (1,50), pero los 22 cambios de contexto no compensarían en una máquina real, y con q=4 la espera media (10,50) ya es peor que la de FCFS.
-
-*(Sugerencia: reescribe este párrafo con tus palabras y comprueba que cada número coincide con tu tabla.)*
-
----
-
-## 6. Capturas
-
-Todas las capturas están en la carpeta [`capturas/`](capturas/):
-
-| Captura | Fichero | Dónde se usa |
-|---|---|---|
-| Programa en ejecución | `ejecucion.png` | Apartado 2 |
-| Salida de `verificacion.csv rr 2` | `verificacion_programa.png` | Apartado 4.3 |
-| Salida sobre `nocturno.csv` | `nocturno.png` | Apartado 5 |
-| Gestor de procesos del SO (comentada) | `gestor_procesos.png` | Apartado 5, pregunta 6 |
 
 ---
