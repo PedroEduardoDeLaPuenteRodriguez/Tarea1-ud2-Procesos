@@ -51,7 +51,6 @@ public class Main {
         // simula el algoritmo o algoritmos pedidos y muestra los resultados.
         // Cuando lo tengas, borra el println de arriba y este comentario.
 
-        // --- Tarea 2: comprobación temporal de los algoritmos (se sustituirá en la tarea 3) ---
         try {
             List<Proceso> procesos = LectorProcesos.leer(fichero.toString());
 
@@ -61,13 +60,7 @@ public class Main {
             if (algoritmo.equals("rr")   || algoritmo.equals("todos")) algoritmos.add(new RoundRobin(quantum));
 
             for (Planificador pl : algoritmos) {
-                Resultado r = pl.simular(procesos);
-                System.out.println("=== " + r.getAlgoritmo() + " ===");
-                System.out.println("CPU: " + String.join(" ", r.getGantt()));
-                for (Proceso p : r.getProcesos()) {
-                    System.out.println(p.getNombre() + " fin=" + p.getFin());
-                }
-                System.out.println("Cambios de contexto: " + r.getCambiosContexto());
+                Informe.imprimir(pl.simular(procesos), traza);
             }
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
