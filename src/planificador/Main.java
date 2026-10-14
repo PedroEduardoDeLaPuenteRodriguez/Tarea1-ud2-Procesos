@@ -66,7 +66,7 @@ public class Main {
             System.err.println("Error: " + e.getMessage());
             System.exit(1);
         } catch (java.io.IOException e) {
-            System.err.println("Error leyendo el fichero: " + e.getMessage());
+            System.err.println("Erro leyendo el fichero: " + e.getMessage());
             System.exit(1);
         }
     }
