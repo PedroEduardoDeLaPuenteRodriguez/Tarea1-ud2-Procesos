@@ -239,8 +239,6 @@ Correspondencia con mi sistema operativo:
 
 <!-- ![Gestor de procesos del sistema](capturas/gestor_procesos.png) -->
 
-Plantilla de comentario (adáptala a lo que se ve en tu captura):
-
 | Estado del simulador | Equivalente en mi SO | Ejemplo en mi captura |
 |---|---|---|
 | `NUEVO` | Proceso que se está creando | *(si ves alguno)* |
